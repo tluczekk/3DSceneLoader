@@ -4,10 +4,16 @@
             "type": "cones",
             "params":[
                 {
+                    "x":2,
+                    "y":4,
+                    "z":3,
                     "radius":6,
                     "height":3
                 },
                 {
+                    "x":6,
+                    "y":-2,
+                    "z":-6,
                     "radius":3,
                     "height":4
                 }
@@ -17,10 +23,16 @@
             "type":"cylinders",
             "params":[
                 {
+                    "x":12,
+                    "y":43,
+                    "z":0,
                     "radius":4,
                     "height":2
                 },
                 {
+                    "x":1,
+                    "y":2,
+                    "z":3,
                     "radius":7,
                     "height":6
                 }
@@ -30,11 +42,17 @@
             "type":"cuboids",
             "params":[
                 {
+                    "x":5,
+                    "y":-4,
+                    "z":-3,
                     "a":3,
                     "b":4,
                     "c":5
                 },
                 {
+                    "x":-2,
+                    "y":-4,
+                    "z":-3,
                     "a":6,
                     "b":3,
                     "c":1
@@ -45,9 +63,15 @@
             "type":"spheres",
             "params":[
                 {
+                    "x":-10,
+                    "y":0,
+                    "z":0,
                     "radius":2
                 },
                 {
+                    "x":1,
+                    "y":1,
+                    "z":1,
                     "radius":5
                 }
             ]
