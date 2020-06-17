@@ -2,6 +2,7 @@ from cone import Cone
 from cuboid import Cuboid
 from cylinder import Cylinder
 from sphere import Sphere
+from triangle import Vertex, Triangle
 import json
 import pygame
 from pygame.locals import *
@@ -64,6 +65,7 @@ for cyl in cyli_arr:
     print("cylinder: " + str(cyl.get_area()))
 for cub in cub_arr:
     print("cuboid: " + str(cub.get_area()))
+    print(cub.get_triangles(cub.get_vertices()))
 for sph in sphere_arr:
     print("sphere: " + str(sph.get_area()))
 
