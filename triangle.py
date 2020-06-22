@@ -1,6 +1,8 @@
+import numpy as np
+
 class Vertex:
     def __init__(self, x, y, z, n):
-        self.point = [x, y, z]
+        self.point = np.array([x, y, z])
         self.norm = n
 
 class Triangle:

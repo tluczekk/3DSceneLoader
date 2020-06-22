@@ -9,6 +9,7 @@ from pygame.locals import *
 from sys import exit
 import time
 import numpy as np
+from math import pi, sin, cos
 
 # Setting up pygame
 # https://pythonprogramming.net/pygame-python-3-part-1-intro/
@@ -19,18 +20,18 @@ pygame.display.set_caption('3D Scene loader - provide JSON to visualize')
 display_game = pygame.display.set_mode((width, height))
 CLOCK = pygame.time.Clock()
 font = pygame.font.Font(pygame.font.get_default_font(), 36)
-display_game.fill((0,0,139))
-pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (600,0), (600,600), 100)
-pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (0,300), (1200,300), 100)
-pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (0,0), (1200,600), 60)
-pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (0,600), (1200,0), 60)
-pygame.draw.line(display_game, pygame.color.THECOLORS['red'], (600,0), (600,600), 60)
-pygame.draw.line(display_game, pygame.color.THECOLORS['red'], (0,300), (1200,300), 60)
-pygame.draw.line(display_game, pygame.color.THECOLORS['red'], (0,0), (1200,600), 26)
-pygame.draw.line(display_game, pygame.color.THECOLORS['red'], (0,600), (1200,0), 26)
+# display_game.fill((0,0,139))
+# pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (600,0), (600,600), 100)
+# pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (0,300), (1200,300), 100)
+# pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (0,0), (1200,600), 60)
+# pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (0,600), (1200,0), 60)
+# pygame.draw.line(display_game, pygame.color.THECOLORS['red'], (600,0), (600,600), 60)
+# pygame.draw.line(display_game, pygame.color.THECOLORS['red'], (0,300), (1200,300), 60)
+# pygame.draw.line(display_game, pygame.color.THECOLORS['red'], (0,0), (1200,600), 26)
+# pygame.draw.line(display_game, pygame.color.THECOLORS['red'], (0,600), (1200,0), 26)
 CLOCK.tick(30)
 pygame.display.flip()
-time.sleep(15)
+time.sleep(5)
 
 cones_arr = []
 cyli_arr = []
@@ -68,5 +69,36 @@ for cub in cub_arr:
     print(cub.get_triangles(cub.get_vertices()))
 for sph in sphere_arr:
     print("sphere: " + str(sph.get_area()))
+
+aspect = width / height
+FOV = cos(pi/4) / sin (pi/4)
+
+close = 0.1
+far = 1000
+
+M = np.array([
+    [aspect*FOV, 0, 0, 0],
+    [0, FOV, 0,0],
+    [0,0,far/(far-close), 1],
+    [0,0,(-far*close)/(far-close), 0]
+])
+
+f = 400
+S = np.eye(4)
+S[0,0] *= f
+S[1,1] *= f
+
+cubvert = []
+cubtoshow = cub_arr[0]
+for v in cubtoshow.get_vertices():
+    vertmult = np.array([v.point[0], v.point[1], v.point[2], 1])
+    cubvert.append(vertmult.dot(M))
+
+for i in range(len(cubvert)-2):
+    pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (cubvert[i][0] + width/2, cubvert[i][1] + height/2), (cubvert[i+1][0]+width/2, cubvert[i+1][1]+height/2), 5)
+pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (cubvert[len(cubvert)-1][0] + width/2, cubvert[len(cubvert)-1][1] + height/2), (cubvert[0][0]+width/2, cubvert[0][1]+height/2), 5)
+
+pygame.display.flip()
+time.sleep(15)
 
 exit(0)
