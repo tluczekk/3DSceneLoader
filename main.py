@@ -90,19 +90,30 @@ S[1,1] *= f
 
 cubvert = []
 cubtoshow = cub_arr[0]
+conetoshow = cones_arr[0]
+cylitoshow = cyli_arr[0]
 
-for triangle in cubtoshow.get_triangles(cubtoshow.get_vertices()):
+# # cuboid
+# for triangle in cubtoshow.get_triangles(cubtoshow.get_vertices()):
+#     for v in triangle.get_vertices():
+#         vertmult = np.array([v.point[0], v.point[1], v.point[2], 1])
+#         cubvert.append(vertmult.dot(M))
+
+# # cone
+# for triangle in conetoshow.get_triangles(conetoshow.get_vertices()):
+#     for v in triangle.get_vertices():
+#         vertmult = np.array([v.point[0], v.point[1], v.point[2], 1])
+#         cubvert.append(vertmult.dot(M))
+
+# cylinder
+for triangle in cylitoshow.get_triangles(cylitoshow.get_vertices()):
     for v in triangle.get_vertices():
         vertmult = np.array([v.point[0], v.point[1], v.point[2], 1])
         cubvert.append(vertmult.dot(M))
 
-# for v in cubtoshow.get_vertices():
-#     vertmult = np.array([v.point[0], v.point[1], v.point[2], 1])
-#     cubvert.append(vertmult.dot(M))
-
 for i in range(len(cubvert)-2):
-    pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (cubvert[i][0] + width/2, cubvert[i][1] + height/2), (cubvert[i+1][0]+width/2, cubvert[i+1][1]+height/2), 5)
-pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (cubvert[len(cubvert)-1][0] + width/2, cubvert[len(cubvert)-1][1] + height/2), (cubvert[0][0]+width/2, cubvert[0][1]+height/2), 5)
+    pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (cubvert[i][0] + width/2, cubvert[i][1] + height/2), (cubvert[i+1][0]+width/2, cubvert[i+1][1]+height/2), 1)
+pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (cubvert[len(cubvert)-1][0] + width/2, cubvert[len(cubvert)-1][1] + height/2), (cubvert[0][0]+width/2, cubvert[0][1]+height/2), 1)
 
 pygame.display.flip()
 time.sleep(15)
