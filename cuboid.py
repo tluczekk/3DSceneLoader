@@ -16,24 +16,31 @@ class Cuboid:
         vert.append(Vertex(self.position[0]-(self.a/2),
                            self.position[1]-(self.b/2),
                            self.position[2]-(self.c/2),1))
-        vert.append(Vertex(self.position[0]+(self.a/2),
-                           self.position[1]-(self.b/2),
-                           self.position[2]-(self.c/2),1))
+
         vert.append(Vertex(self.position[0]-(self.a/2),
                            self.position[1]+(self.b/2),
                            self.position[2]-(self.c/2),1))
-        vert.append(Vertex(self.position[0]-(self.a/2),
+
+        vert.append(Vertex(self.position[0]+(self.a/2),
                            self.position[1]-(self.b/2),
-                           self.position[2]+(self.c/2),1))
+                           self.position[2]-(self.c/2),1))
+
         vert.append(Vertex(self.position[0]+(self.a/2),
                            self.position[1]+(self.b/2),
                            self.position[2]-(self.c/2),1))
+
+        vert.append(Vertex(self.position[0]-(self.a/2),
+                           self.position[1]-(self.b/2),
+                           self.position[2]+(self.c/2),1))
+
         vert.append(Vertex(self.position[0]-(self.a/2),
                            self.position[1]+(self.b/2),
                            self.position[2]+(self.c/2),1))
+
         vert.append(Vertex(self.position[0]+(self.a/2),
                            self.position[1]-(self.b/2),
                            self.position[2]+(self.c/2),1))
+
         vert.append(Vertex(self.position[0]+(self.a/2),
                            self.position[1]+(self.b/2),
                            self.position[2]+(self.c/2),1))
@@ -41,8 +48,23 @@ class Cuboid:
     
     def get_triangles(self, vert):
         triangles = []
-        for i in range(len(vert)-3):
-            triangles.append(Triangle(vert[i], vert[i+1], vert[i+2]))
-        triangles.append(Triangle(vert[len(vert)-2], vert[len(vert)-1], vert[0]))
-        triangles.append(Triangle(vert[len(vert)-1], vert[0], vert[1]))
+        # front
+        triangles.append(Triangle(vert[0], vert[1], vert[2]))
+        triangles.append(Triangle(vert[1], vert[2], vert[3]))
+        # top
+        triangles.append(Triangle(vert[1], vert[3], vert[7]))
+        triangles.append(Triangle(vert[1], vert[5], vert[7]))
+        # back
+        triangles.append(Triangle(vert[4], vert[5], vert[7]))
+        triangles.append(Triangle(vert[4], vert[6], vert[7]))
+        # bottom
+        triangles.append(Triangle(vert[0], vert[2], vert[4]))
+        triangles.append(Triangle(vert[2], vert[4], vert[6]))
+        # left 
+        triangles.append(Triangle(vert[0], vert[1], vert[4]))
+        triangles.append(Triangle(vert[1], vert[4], vert[5]))
+        # right
+        triangles.append(Triangle(vert[2], vert[3], vert[7]))
+        triangles.append(Triangle(vert[2], vert[6], vert[7]))
+
         return triangles

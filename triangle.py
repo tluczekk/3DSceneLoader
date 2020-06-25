@@ -8,4 +8,7 @@ class Vertex:
 class Triangle:
     def __init__(self, a, b, c):
         self.vertices = [a, b, c]
+        
+    def get_vertices(self):
+        return self.vertices
     

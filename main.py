@@ -90,9 +90,15 @@ S[1,1] *= f
 
 cubvert = []
 cubtoshow = cub_arr[0]
-for v in cubtoshow.get_vertices():
-    vertmult = np.array([v.point[0], v.point[1], v.point[2], 1])
-    cubvert.append(vertmult.dot(M))
+
+for triangle in cubtoshow.get_triangles(cubtoshow.get_vertices()):
+    for v in triangle.get_vertices():
+        vertmult = np.array([v.point[0], v.point[1], v.point[2], 1])
+        cubvert.append(vertmult.dot(M))
+
+# for v in cubtoshow.get_vertices():
+#     vertmult = np.array([v.point[0], v.point[1], v.point[2], 1])
+#     cubvert.append(vertmult.dot(M))
 
 for i in range(len(cubvert)-2):
     pygame.draw.line(display_game, pygame.color.THECOLORS['white'], (cubvert[i][0] + width/2, cubvert[i][1] + height/2), (cubvert[i+1][0]+width/2, cubvert[i+1][1]+height/2), 5)
