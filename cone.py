@@ -13,7 +13,7 @@ class Cone:
         return pi*self.radius*(self.radius + sqrt(self.height*self.height + self.radius*self.radius))
 
     def get_vertices(self):
-        self.bottom_center = np.array([self.position[0], self.position[1]+self.height/2, self.position[2]])
+        self.bottom_center = np.array([self.position[0], self.position[1]-self.height/2, self.position[2]])
         vert = []
         vert.append(Vertex(self.bottom_center[0], self.bottom_center[1], self.bottom_center[2],1))
         d = self.density
@@ -22,7 +22,7 @@ class Cone:
             vert.append(Vertex(self.radius * cos(2*pi*i/d) + self.bottom_center[0], self.bottom_center[1], \
                 self.radius * sin(2 * pi * i / d) + self.bottom_center[2],1))
         # top
-        vert.append(Vertex(self.position[0], self.position[1]-self.height/2, self.position[2],1))
+        vert.append(Vertex(self.position[0], self.position[1]+self.height/2, self.position[2],1))
         return vert
     
     def get_triangles(self, vert):

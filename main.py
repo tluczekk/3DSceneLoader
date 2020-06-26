@@ -11,6 +11,8 @@ import time
 import numpy as np
 from math import pi, sin, cos
 
+FILE = "pajacyk.json"
+
 # Setting up pygame
 # https://pythonprogramming.net/pygame-python-3-part-1-intro/
 width = 1200
@@ -30,7 +32,7 @@ cub_arr = []
 sphere_arr = []
 
 # parsing JSON file
-with open('examp.json') as json_file:
+with open(FILE) as json_file:
     data = json.load(json_file)
     for f in data['figures']:
         if f['type'] == "cones":
@@ -73,7 +75,7 @@ T = np.eye(4)
 T[3,1] = 0
 T2 = np.eye(4)
 T2[3,1] = 0
-T2[3,2] = 5
+T2[3,2] = 15
 
 camera = np.zeros(3)
 
