@@ -3,10 +3,11 @@ import numpy as np
 from triangle import Triangle, Vertex
 
 class Cone:
-    def __init__(self, x, y, z, r, h):
+    def __init__(self, x, y, z, r, h, d):
         self.radius = r
         self.height = h
         self.position = np.array([x,y,z])
+        self.density = d
 
     def get_area(self):
         return pi*self.radius*(self.radius + sqrt(self.height*self.height + self.radius*self.radius))
@@ -15,11 +16,11 @@ class Cone:
         self.bottom_center = np.array([self.position[0], self.position[1]+self.height/2, self.position[2]])
         vert = []
         vert.append(Vertex(self.bottom_center[0], self.bottom_center[1], self.bottom_center[2],1))
-        x = 20
+        d = self.density
         # using trigonometric parametrisation of the circle
-        for i in range(x):
-            vert.append(Vertex(self.radius * cos(2*pi*i/x) + self.bottom_center[0], self.bottom_center[1], \
-                self.radius * sin(2 * pi * i / x) + self.bottom_center[2],1))
+        for i in range(d):
+            vert.append(Vertex(self.radius * cos(2*pi*i/d) + self.bottom_center[0], self.bottom_center[1], \
+                self.radius * sin(2 * pi * i / d) + self.bottom_center[2],1))
         # top
         vert.append(Vertex(self.position[0], self.position[1]-self.height/2, self.position[2],1))
         return vert
@@ -28,12 +29,12 @@ class Cone:
         # bottom triangles
         # first vertex in vert is the center of base, last being the top of the cone
         triangles = []
-        for i in range(len(vert)-4):
+        for i in range(len(vert)-3):
             triangles.append(Triangle(vert[0], vert[i+1], vert[i+2]))
         triangles.append(Triangle(vert[0], vert[len(vert)-2], vert[1])) # we can safely assume vert[1] exists
         
         # side triangles
-        for i in range(len(vert) - 4):
+        for i in range(len(vert) - 3):
             triangles.append(Triangle(vert[i+1], vert[i+2], vert[len(vert)-1]))
         triangles.append(Triangle(vert[len(vert)-2], vert[1], vert[len(vert)-1]))
 

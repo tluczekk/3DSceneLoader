@@ -3,16 +3,18 @@ import numpy as np
 from triangle import Triangle, Vertex
 
 class Sphere:
-    def __init__(self, x, y, z, r):
+    def __init__(self, x, y, z, r, m, n):
         self.radius = r
         self.position = np.array([x, y, z])
+        self.meridians = m
+        self.parallels = n
 
     def get_area(self):
         return (4/3)*pi*self.radius*self.radius*self.radius
 
     def get_vertices(self):
-        n = 10
-        m = 10
+        n = self.parallels
+        m = self.meridians
         # south pole
         south_pole = np.array([self.position[0], self.position[1]+self.radius, self.position[2]])
         vert = []
@@ -29,8 +31,8 @@ class Sphere:
 
     def get_triangles(self, vert):
         triangles = []
-        m = 10
-        n = 10
+        m = self.meridians
+        n = self.parallels
         for i in range(m-1):
             triangles.append(Triangle(vert[0], vert[i+1], vert[i+2]))
             triangles.append(Triangle(vert[m*n+1], vert[(n-1)*m+i+1], vert[(n-1)*m+i+2]))

@@ -8,14 +8,16 @@
                     "y":9,
                     "z":7,
                     "radius":4,
-                    "height":6
+                    "height":6,
+                    "density":20
                 },
                 {
                     "x":6,
                     "y":-2,
                     "z":-6,
                     "radius":3,
-                    "height":4
+                    "height":10,
+                    "density":10
                 }
             ]
         },
@@ -27,14 +29,16 @@
                     "y":13,
                     "z":0,
                     "radius":3,
-                    "height":10
+                    "height":10,
+                    "density":20
                 },
                 {
                     "x":1,
                     "y":2,
                     "z":3,
                     "radius":7,
-                    "height":6
+                    "height":6,
+                    "density":10
                 }
             ]
         },
@@ -66,13 +70,17 @@
                     "x":4,
                     "y":3,
                     "z":4,
-                    "radius":5
+                    "radius":4,
+                    "meridians":10,
+                    "parallels":10
                 },
                 {
-                    "x":1,
-                    "y":1,
-                    "z":1,
-                    "radius":5
+                    "x":-7,
+                    "y":-3,
+                    "z":-2,
+                    "radius":6,
+                    "meridians":15,
+                    "parallels":15
                 }
             ]
         }
