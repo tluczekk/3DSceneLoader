@@ -1,3 +1,4 @@
+# Jakub Tłuczek 2020
 from cone import Cone
 from cuboid import Cuboid
 from cylinder import Cylinder
@@ -10,6 +11,17 @@ import time
 import numpy as np
 from math import pi, sin, cos
 
+# sources
+#
+# trimesh tutorial
+# https://en.wikipedia.org/wiki/3D_projection
+# https://en.wikipedia.org/wiki/Transformation_matrix
+# Khan Academy videos on youtube
+# javidx9 "3d graphics engine course" on youtube
+# https://medium.com/swlh/understanding-3d-matrix-transforms-with-pixijs-c76da3f8bd8
+
+
+# program parameters
 FILE = "pajacyk.json"
 width = 1200
 height = 600
@@ -178,6 +190,7 @@ rot_const = pi * SPEED
 xR = 0
 yR = 0
 zR = pi
+# initial image
 redraw(xR, yR, zR)
 # standard pygame routine
 # https://stackoverflow.com/questions/46594447/pygame-event-handling-key-events

@@ -20,6 +20,8 @@ Firstly, dependencies have to be installed:
 > \> python3 main.py
 ### Linux/macOS/BSD
 > $ python3 main.py
+### Providing JSON
+User can provide his own .json file, in the format similar to this in either *examp.json* or *pajacyk.json*, and change string variable **FILE** in the beginning of **main.py**
 
 ## Controls
 - **W** and **S** - rotate x-axis
