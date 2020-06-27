@@ -13,7 +13,7 @@ from math import pi, sin, cos
 
 # sources
 #
-# trimesh tutorial
+# trimesh tutorial and slides
 # https://en.wikipedia.org/wiki/3D_projection
 # https://en.wikipedia.org/wiki/Transformation_matrix
 # Khan Academy videos on youtube
@@ -107,7 +107,7 @@ Z[3,2] = 30
 
 camera = np.zeros(3)
 
-# same as in S matrix - 2,1,.. seems to little, 3,2,.. however is too much
+# same as in S matrix - 2,1,.. seems t0o little, 3,2,.. however is too much
 C = np.array([2.5, 1.5, 0, 0])
 
 isRedraw = False
@@ -224,8 +224,9 @@ while isOngoing:
                     Z[3,2] -= 1
                     isZooming = True
             elif event.key == K_e:
-                Z[3,2] += 1
-                isZooming = True
+                if Z[3,2] < 100:
+                    Z[3,2] += 1
+                    isZooming = True
         
         elif event.type == KEYUP:
             if event.key == K_w:
