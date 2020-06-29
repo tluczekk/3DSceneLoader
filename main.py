@@ -16,6 +16,7 @@ from math import pi, sin, cos
 # trimesh tutorial and slides
 # https://en.wikipedia.org/wiki/3D_projection
 # https://en.wikipedia.org/wiki/Transformation_matrix
+# Botsch, Kobbelt, Pauly, Alliez, Leby "Polygonal Mesh Processing"
 # Khan Academy videos on youtube
 # javidx9 "3d graphics engine course" on youtube
 # https://medium.com/swlh/understanding-3d-matrix-transforms-with-pixijs-c76da3f8bd8
@@ -47,9 +48,20 @@ sphere_arr = []
 
 # draw triangle utility
 def draw_triangle(p1,p2,p3,color):
-    pygame.draw.line(display_game, pygame.color.THECOLORS[color], (p1[0],p1[1]), (p2[0],p2[1]),1)
-    pygame.draw.line(display_game, pygame.color.THECOLORS[color], (p2[0],p2[1]), (p3[0],p3[1]),1)
-    pygame.draw.line(display_game, pygame.color.THECOLORS[color], (p1[0],p1[1]), (p3[0],p3[1]),1)
+    try:
+        pygame.draw.line(display_game, pygame.color.THECOLORS[color], (p1[0],p1[1]), (p2[0],p2[1]),1)
+    except Exception:
+        pass
+
+    try:
+        pygame.draw.line(display_game, pygame.color.THECOLORS[color], (p2[0],p2[1]), (p3[0],p3[1]),1)
+    except Exception:
+        pass
+
+    try:
+        pygame.draw.line(display_game, pygame.color.THECOLORS[color], (p1[0],p1[1]), (p3[0],p3[1]),1)
+    except Exception:
+        pass
 
 # transform vertex function
 def transform_vert(vert, matr):
